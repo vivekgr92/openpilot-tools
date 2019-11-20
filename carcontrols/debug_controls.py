@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+
+# debug_controls.py is a mocked version of controlsd.py and uses input from a joystick to send controls to your car.
+
 import struct
 from common.numpy_fast import clip
 from common.params import Params
@@ -14,10 +17,12 @@ HwType = log.HealthData.HwType
 def steer_thread():
   poller = messaging.Poller()
 
+  # List of Subscribed Messages
   logcan = messaging.sub_sock('can')
   health = messaging.sub_sock('health')
   joystick_sock = messaging.sub_sock('testJoystick', conflate=True, poller=poller)
 
+  # List of Published Messaged which will control the car
   carstate = messaging.pub_sock('carState')
   carcontrol = messaging.pub_sock('carControl')
   sendcan = messaging.pub_sock('sendcan')

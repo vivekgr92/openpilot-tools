@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 # This process publishes joystick events. Such events can be suscribed by
+# It runs a deamon that reads inputs from a joystick and publishes them over zmq.
 # mocked car controller scripts.
 
 
